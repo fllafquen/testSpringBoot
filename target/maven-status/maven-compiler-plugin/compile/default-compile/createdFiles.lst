@@ -1,0 +1,4 @@
+com\spotifyexample\demo\SpotifyExampleApplication.class
+com\spotifyexample\demo\service\SpotifyService$1.class
+com\spotifyexample\demo\service\SpotifyService.class
+com\spotifyexample\demo\controller\AuthenticationController.class

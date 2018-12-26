@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.spotifyexample.demo.SpotifyExampleApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.33 sec - in com.spotifyexample.demo.SpotifyExampleApplicationTests
