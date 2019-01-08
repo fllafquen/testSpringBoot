@@ -1,4 +1,4 @@
-package com.spotifyexample.model;
+package com.spotifyexample.demo.model;
 
 public class Token {
 	private static String name;
