@@ -1,19 +1,20 @@
 package com.spotifyexample.demo.model;
 
 public class Token {
-	private static String name;
+	private static String id;
 
-	public static String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
-	public static void setName(String name) {
-		Token.name = name;
+	public void setId(String id) {
+		Token.id = id;
 	}
 
 	@Override
 	public String toString() {
 		return "Token [getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
 				+ "]";
-	}
+	}	
+	
 }

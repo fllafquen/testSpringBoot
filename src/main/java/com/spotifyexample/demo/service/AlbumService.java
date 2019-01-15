@@ -1,49 +1,43 @@
 package com.spotifyexample.demo.service;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spotifyexample.demo.model.Album;
 
 @Service
 public class AlbumService {
+    @Autowired
+    private AuthService authService;
+    
 	private static String URLALBUM = "https://api.spotify.com/v1/albums/";
-	private static String TOKEN = "BQDZbMJkpIFeZit3JYszXvR-9mmdaxV19mU4NNJWD-IUQk-ZMRTZ-wsTjnTWnKnIH2sT22k0V8Pr4kDJUY8";
-	
-	public String consultaAlbum(String idAlbum) throws IOException {
-		
 
-		try {
+	public Album consultaAlbum(String idAlbum) throws Exception {
+		Album album = new Album();
+
+	    String token = "Bearer ".concat(obtenerToken());
+	    
 		String urlalbum = URLALBUM.concat(idAlbum);
 	    URL url = new URL(urlalbum);
-	    String auth = "Bearer ".concat(TOKEN);
-	    StringBuilder sb = new StringBuilder();	
-			
-			
+    
         HttpURLConnection con = (HttpURLConnection)url.openConnection();
         con.setRequestMethod("GET");
         con.setDoOutput(true);
         con.setRequestProperty("Accept","application/json");
         con.setRequestProperty("Content-Type","application/json");
-        con.setRequestProperty("Authorization",auth);
+        con.setRequestProperty("Authorization",token);
+        
+        String response = new AppendService().appendResponseApi(con).toString();
+        
+	    album.setDetalle(response.toString());
+        System.out.println(album.getDetalle());
+	    return album;
+	}
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
-		
-	    for (int c; (c = in.read()) >= 0;)
-	        sb.append((char)c);
-
-	    System.out.println(sb.toString());
-	    return sb.toString();
-
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-
+	private String obtenerToken() throws Exception {
+		return authService.getToken();
 	}
 }

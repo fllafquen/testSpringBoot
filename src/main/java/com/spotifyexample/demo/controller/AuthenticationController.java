@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import com.spotifyexample.demo.service.AuthService;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -15,5 +15,7 @@ public class AuthenticationController {
     public String index() throws Exception {
     	return  authService.getToken();
     }
+    
+
 
 }
